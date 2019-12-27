@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %} 课程清单 {% end %}
+
+{% block css %}
+{% end %}
+
+{% block js %}
+<script src="{{static_url('course.js')}}" type="text/javascript"></script>
+{% end %}
+
+{% block content %}
+
+<div id="course_forms" >
+<form id="course_form" action="/s/course/" method="POST">
+    <tr>
+        <td>课程名：</td>
+        <td><input type="text" name="cname" value=""></td>
+        <button id="search_cname">点我查询（课程名）</button>
+    </tr>
+</form>
+    
+</div>
+<div id="list">
+    <table border=1>
+        <thead>
+        <tr>
+            <th style="width:10rem">课程号</th>
+            <th style="width:10rem">课程名</th>
+            <!-- <th style="width:6rem">学分</th>
+            <th style="width:15rem">教学楼</th>
+            <th style="width:6rem">教室</th>
+            <th style="width:15rem">第几周</th>
+            <th style="width:6rem">第几节课</th> -->
+        </tr>
+        </thead>
+        <tbody id="mytbody">
+        </tbody> 
+        <tbody id="search">
+        </tbody>
+    </table>
+</div>
+{% end %}
+
