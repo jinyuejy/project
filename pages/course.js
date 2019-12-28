@@ -6,7 +6,7 @@ function table(list){
         $("<td>").text(data['cno']).appendTo(row);
         $("<td>").text(data['cname']).appendTo(row);
         // $("<td>").text(data['credit']).appendTo(row);
-        // $("<td>").text(data['ptb']).appendTo(row);
+        $("<td>").text(data['ptb']).appendTo(row);
         // $("<td>").text(data['room']).appendTo(row);
         // $("<td>").text(data['day']).appendTo(row);
         // $("<td>").text(data['ctime']).appendTo(row);
@@ -14,32 +14,42 @@ function table(list){
     }
 };
 
-function load_table(cno=""){
+
+function postform(){
+    var item={}
+    var cno=$('#course_form input[name="cno"]').val();
+    item['cno']=cno;
+    alert('cno:'+cno)
+    url='/s/course/'+cno
+   $.ajax({
+        type:'POST',
+        url:url,
+        data:JSON.stringify(item),
+        datatype:'json'
+   })
+   .done(function(data){
+       load_table(cno)
+   });
+   return false
+}
+
+
+function load_table(cno=''){
+    var url='/s/course/'+cno;
    $.ajax({
        type:'GET',
-       url: "/s/course/"+cno,
+       url: url,
        data:'',
        datatype:'json'
    })
    .done(function(data){
         table(data)
+        alert("url:"+url)
    })
-   
+
 }
 
-// function postform(cno='10610482'){
-//     var item={}
-//     item['cname']=$("#course_form input[name='cname']").val()
-//     $.ajax({
-//         type:'POST',
-//         url:'/s/course/'+cname,
-//         data:JSON.stringify(item),
-//         datatype:'json'
-//     })
-//     .done(function(data){
-//         load_table(data['cname'])
-//     });
-// }
+
 
 
 // function ceshi(){
@@ -49,6 +59,5 @@ function load_table(cno=""){
 
 $(document).ready(function(){
     load_table();
-    // $("#search_cname").on('click',postform);
-    
+    $("input:submit").on('click',postform);
 });

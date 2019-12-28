@@ -12,7 +12,9 @@ dbconn.register_dsn()
 
 from handlers import *
 
+
 bsae_dir=os.path.dirname(__file__)
+
 
 settings = {
     "static_path": os.path.join(bsae_dir, 'pages'),

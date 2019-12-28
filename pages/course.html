@@ -11,13 +11,15 @@
 {% block content %}
 
 <div id="course_forms" >
-<form id="course_form" action="/s/course/" method="POST">
+<form id="course_form" >
     <tr>
         <td>课程名：</td>
-        <td><input type="text" name="cname" value=""></td>
-        <button id="search_cname">点我查询（课程名）</button>
+        <td><input type="text" name="cno" value=""></td>
+        <td><input type="submit" value="点我提交"></td>
     </tr>
 </form>
+
+<!-- <button id="search_cname">点我查询（课程名）</button> -->
     
 </div>
 <div id="list">
@@ -26,6 +28,7 @@
         <tr>
             <th style="width:10rem">课程号</th>
             <th style="width:10rem">课程名</th>
+            <th style="width:15rem">教学楼</th>
             <!-- <th style="width:6rem">学分</th>
             <th style="width:15rem">教学楼</th>
             <th style="width:6rem">教室</th>
