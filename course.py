@@ -10,7 +10,7 @@ class course(web.RestHandler):
     def get(self,arg):
         conn = self.pool.getconn()
         sql = '''
-        select course.cno,cname
+        select course.cno,cname,credit,ptb,room,day,ctime
         from course,course_time
         where course.cno=course_time.cno
         '''
@@ -40,28 +40,6 @@ class course(web.RestHandler):
             cou=' '
         cno=cou.get('cno')
         print("cno:",cno)
-        # conn=self.pool.getconn()
-        # sql='''
-        # select course.cno,cname
-        # from course,course_time
-        # where course.cno=course_time.cno and course.cno=%s
-        # '''
-        # with conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor) as cur:
-        #     cur.execute(sql,[cno])
-        #     result = cur.fetchall()
-        #     des=cur.description
-        #     conn.commit()
-        # self.pool.putconn(conn)
-        # name = []
-        # for item in des:
-        #     name.append(item[0])
-
-        # final = []
-        # for row in result:
-        #     u = dict(zip(name, list(row)))
-        #     final.append(u)
-        # self.write_json(final)
-        # print(final)
         self.get(cno)
 
 

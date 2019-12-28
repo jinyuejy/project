@@ -34,17 +34,14 @@ class HtplHandler(BaseHandler):
             print("clear suscessfully")
             path='login'
         page = os.path.join(bsae_dir, 'pages', path +'.html')
-        # if path=='default':
-        #     name=user
-        # else:
-        #     name=user
+        name=user
         try:
             if not user and path !='login':
                 self.redirect('/login')
             else:
                 
                 self.set_header("Content-Type", "text/html; charset=UTF-8")
-                self.render(page)
+                self.render(page,name=name)
         except IOError as e:
             if not os.path.exists(page): 
                 raise tornado.web.HTTPError(404)

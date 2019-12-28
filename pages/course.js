@@ -5,11 +5,11 @@ function table(list){
         var data=list[i];
         $("<td>").text(data['cno']).appendTo(row);
         $("<td>").text(data['cname']).appendTo(row);
-        // $("<td>").text(data['credit']).appendTo(row);
+        $("<td>").text(data['credit']).appendTo(row);
         $("<td>").text(data['ptb']).appendTo(row);
-        // $("<td>").text(data['room']).appendTo(row);
-        // $("<td>").text(data['day']).appendTo(row);
-        // $("<td>").text(data['ctime']).appendTo(row);
+        $("<td>").text(data['room']).appendTo(row);
+        $("<td>").text(data['day']).appendTo(row);
+        $("<td>").text(data['ctime']).appendTo(row);
         row.appendTo(tbody)
     }
 };
@@ -19,7 +19,6 @@ function postform(){
     var item={}
     var cno=$('#course_form input[name="cno"]').val();
     item['cno']=cno;
-    alert('cno:'+cno)
     url='/s/course/'+cno
    $.ajax({
         type:'POST',
@@ -44,7 +43,6 @@ function load_table(cno=''){
    })
    .done(function(data){
         table(data)
-        alert("url:"+url)
    })
 
 }
