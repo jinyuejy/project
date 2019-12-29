@@ -30,11 +30,32 @@
             <th style="width:4rem">教室</th>
             <th style="width:10rem">第几周</th>
             <th style="width:6rem">第几节课</th>
+            <th style="width:6rem;">操作</th>
         </tr>
         </thead>
         <tbody id="mytbody">
         </tbody> 
     </table>
+</div>
+<div id="form_change" style="display: none;">
+    <form id="change">
+        <tr><td>课程号：</td>
+            <input type="text" name="cno" value="">
+        </tr>
+        <tr><td>课程名：</td>
+            <input type="text" name="cname" value="">
+        </tr>
+        <tr><td>课序号：</td>
+            <input type="text" name="ordn" value="">
+        </tr>
+        <tr><td>学分：</td>
+            <input type="text" name="credit" value="">
+        </tr>
+        <tr><td><td> 
+        	<input type="submit" value="新增">
+        	<button id="form_close">关闭</button>
+        </td></tr>
+    </form>
 </div>
 {% end %}
 

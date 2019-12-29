@@ -39,7 +39,29 @@ class course(web.RestHandler):
         except:
             cou=' '
         cno=cou.get('cno')
-        print("cno:",cno)
         self.get(cno)
 
+
+    def put(self,args):
+        cou = self.read_json()
+        cno=args
+        with self.db_cursor() as cur:
+            sql = ''' 
+            UPDATE course SET 
+            cno=%s,cname=%s,ordn=%s, credit=%s
+            WHERE cno=%s;
+            '''
+            cur.execute(sql, [cou['cno'],cou['cname'],cou['ordn'],int(cou['credit']),cno])
+            cur.commit()
+
+        self.write_json(cou)
+
+
+    def delete(self, args):
+        print('args:',args)
+        with self.db_cursor() as cur:
+            sql = '''DELETE 
+            FROM course 
+            WHERE cno= %s'''
+            cur.execute(sql, [args])
 
