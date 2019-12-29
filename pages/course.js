@@ -66,6 +66,35 @@ function load_table(cno = '') {
 
 }
 
+
+function add_courses() {
+    // $("#form_change").show()
+    $("#change").off('submit').on('submit',function () {
+        var item = {};
+        item['cno'] = $("#change input[name='cno']").val()
+        item['cname'] = $("#change input[name='cname']").val()
+        item['ordn'] = $("#change input[name='ordn']").val()
+        item['credit'] = $("#change input[name='credit']").val()
+        // item['cnature']=$("#change input[name='cnature']").val()
+        // item['coption']=$("#change input[name='coption']").val()
+        var url = '/s/course/' + item['cno'];
+        alert('url:'+url)
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: JSON.stringify(item),
+            datatype: 'json'
+        })
+            .done(function () {
+                load_table();
+                $("#form_change").hide()
+            });
+        return false
+    });
+
+    $('#form_change').show()
+}
+
 function edit_course(cno = '') {
     var url = '/s/course/' + cno;
     // correct
@@ -118,16 +147,11 @@ function delete_course(cno = '') {
         dataType: 'html'
     })
         .done(function () {
-            alert('url:'+url)
+            alert('url:' + url)
             load_table();
         });
 }
 // 删除块
-
-// function ceshi(){
-//     var need=$("input:text").val()
-//     alert(need)
-// }
 
 $(document).ready(function () {
     $("#form_close").on("click", function () {
@@ -137,6 +161,7 @@ $(document).ready(function () {
         });
         $('#form_change').hide();
     });
+    $("#add_course").on('click', add_courses);
     load_table();
-    $("course_form input:submit").on('click', postform);
+    $("#course_form input:submit").on('click', postform);
 });

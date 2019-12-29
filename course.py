@@ -34,12 +34,46 @@ class course(web.RestHandler):
 
 
     def post(self,arg):
-        try:
-            cou=self.read_json()
-        except:
-            cou=' '
-        cno=cou.get('cno')
-        self.get(cno)
+        sql='''
+        select cno
+        from course
+        '''
+        list_cno=[]
+        conn=self.pool.getconn()
+        with conn.cursor() as cur:
+            cur.execute(sql)
+            result=cur.fetchall()
+        self.pool.putconn(conn)
+        for i in result:
+            list_cno.append(str(i[0]))
+        ##判断是否为新增
+        if arg in list_cno:
+            try:
+                cou=self.read_json()
+            except:
+                cou=' '
+            print('cou1:',arg)
+            cno=cou.get('cno')
+            self.get(cno)
+        else:
+            self.post_add(arg)
+
+    def post_add(self,arg):
+        print('cou2:',arg)
+        cou=self.read_json()
+        if not cou.get('coptipn'):
+            cou['coption']='一般'
+        if not cou.get('cnature'):
+            cou['cnature']='必修'
+        with self.db_cursor() as dc:
+            sql = '''
+            INSERT 
+            INTO course(cno,cname,ordn,credit,cnature,coption)
+            VALUES(%s, %s, %s, %s,%s,%s);
+            '''
+            data=[cou['cno'],cou['cname'],cou['ordn'],cou['credit'],cou['cnature'],cou['coption']]
+            dc.execute(sql,data)
+            self.write_json(cou)
 
 
     def put(self,args):
