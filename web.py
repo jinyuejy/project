@@ -6,7 +6,6 @@ import tornado.web
 import tornado.ioloop
 import dbconn
 import os
-
 bsae_dir=os.path.dirname(__file__)
 class BaseHandler(tornado.web.RequestHandler):
     def db_cursor(self, autocommit=True):
@@ -23,7 +22,11 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class HtplHandler(BaseHandler):
     def get(self, path):
-        user=self.get_user()
+        sno=self.get_user()
+        try:
+            user=dbconn.get_register()[sno][0]
+        except:
+            user=''
         print('姓名：',user)
         if not path: 
             path = 'default'

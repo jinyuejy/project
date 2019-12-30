@@ -2,9 +2,13 @@
     <body>
         <form action="/user/login" method="POST">
         <label>name:</label>
-        <input type="text" name="name">
+        <input type="text" name="name"><br>
         <label>password</label>
-        <input type="password" name="password">
+        <input type="password" name="password"><br>
+        <select name="role">
+            <option value="students">学生</option>
+            <option value="admins">管理员</option>
+        </select>
         <input type="submit" value="login">
         </form>
     </body>

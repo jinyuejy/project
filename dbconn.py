@@ -28,6 +28,34 @@ def _get_connection_pool(name=None):
 
     return _pg_conn_pools[name]
 
+def get_register():
+        register_dsn()
+        pool=_get_connection_pool()
+        conn=pool.getconn()
+        cur=conn.cursor()
+
+        sql='''
+        select sno,sname,password
+        from student
+        '''
+        try:
+            cur.execute(sql)
+            result=cur.fetchall()
+            conn.commit()
+            pool.putconn(conn)
+
+        except:
+            conn.rollback()
+            raise
+
+        ssno=[]
+        sinfor=[]
+        for row in result:
+            ssno.append(row[0])
+            sinfor.append([row[1],row[2]])
+
+        return dict(zip(ssno,sinfor))
+
 class ConnectionError(LookupError):
     pass
 
