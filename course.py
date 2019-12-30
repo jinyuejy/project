@@ -1,9 +1,6 @@
 import psycopg2.pool as py
 import psycopg2.extras
-import tornado.web
-import asyncio,time,json,web,dbconn
-asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-import os
+import time,json,web,dbconn
 class course(web.RestHandler):
     dsn="host=localhost dbname=csdb user=hopers password=hope"
     pool = py.ThreadedConnectionPool(1, 20, dsn)

@@ -4,10 +4,7 @@ import tornado.ioloop
 import tornado.web
 import asyncio,time
 asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-import os,login
-import web
-import dbconn
-import course
+import os,login,web,dbconn,course,grade
 dbconn.register_dsn()
 
 from handlers import *
@@ -27,6 +24,7 @@ application = tornado.web.Application([
     (r'/user/(login)',login.login),
     (r"/s/student/(.*)", StudentRestHandler),
     (r'/s/course/(.*)',course.course),
+    (r'/s/grade/(.*)&(.*)',grade.grade),
     (r'/(.*)', web.HtplHandler)
 ], **settings,
 cookie_secret='__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__')
