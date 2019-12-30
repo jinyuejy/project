@@ -34,3 +34,28 @@ class grade(web.RestHandler):
             final.append(u)
 
         self.write_json(final)
+
+    def put(self,*args):
+        grade=self.read_json()
+        sno=args[0]
+        cno=args[1]
+        sql='''
+        update grade set
+        cno=%s,sno=%s,grade=%s
+        where sno=%s and cno=%s
+        '''
+        with self.db_cursor() as cur:
+            data=[grade['cno'],grade['sno'],grade['grade'],sno,cno]
+            cur.execute(sql,data)
+            cur.commit()
+
+        self.write_json(grade)
+
+
+    def delete(self, *args):
+        print('args:',args)
+        with self.db_cursor() as cur:
+            sql = '''DELETE 
+            FROM grade 
+            WHERE cno= %s and sno=%s'''
+            cur.execute(sql, [args[1],args[0]])
