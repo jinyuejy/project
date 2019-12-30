@@ -8,18 +8,33 @@ class login(web.BaseHandler):
         password=self.get_argument('password')
         role=self.get_argument('role')
         register=dbconn.get_register()
-        if name in register.keys():
-            if password==register[name][1]:
-                self.set_secure_cookie('user',name)
-                if role=="admins":
+        admin={}
+        student={}
+        for i in register.keys():
+            if i=='1710650105':
+                admin[i]=register[i]
+            else:
+                student[i]=register[i]
+
+        if role=='admins':
+            if name in admin.keys():
+                if password==admin[name][1]:
+                    self.set_secure_cookie('user',name)
                     self.redirect('/')
                 else:
-                    self.redirect('/stu')
+                    self.redirect('/login')
             else:
                 self.redirect('/login')
-                return
-        else:
-            self.redirect('/login')
-            print('无此用户，请注册')
+                print('没有注册管理员')
 
+        else:
+            if name in student.keys():
+                if password==student[name][1]:
+                    self.set_secure_cookie('user',name)
+                    self.redirect('/stu')
+                else:
+                    self.redirect('/login')
+            else:
+                self.redirect('/login')
+                print('没有注册')
 

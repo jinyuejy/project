@@ -33,7 +33,6 @@ function postform() {
 
 function load_table(cno = '') {
     var url = '/s/course/' + cno;
-    alert('url:'+url)
     $.ajax({
         type: 'GET',
         url: url,
