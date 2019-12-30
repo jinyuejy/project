@@ -10,7 +10,7 @@ function table(list) {
         $("<td>").text(data['room']).appendTo(row);
         $("<td>").text(data['day']).appendTo(row);
         $("<td>").text(data['ctime']).appendTo(row);
-        row.appendTo(tbody)
+        
         var btn_edit = $('<button>')
             .text('修改')
             .on("click", (function (data) {
@@ -30,6 +30,8 @@ function table(list) {
             })(data));
 
         $('<td>').append(btn_edit).append(btn_del).appendTo(row);
+
+        row.appendTo(tbody)
     }
 };
 
