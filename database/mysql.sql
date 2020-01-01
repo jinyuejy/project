@@ -27,8 +27,8 @@ CREATE TABLE grade (
     cno CHARACTER VARYING(15),
     grade FLOAT(4),
     PRIMARY KEY(sno,cno),
-    FOREIGN KEY(sno) REFERENCES student(sno),
-    FOREIGN KEY(cno) REFERENCES course(cno)
+    FOREIGN KEY(sno) REFERENCES student(sno) on DELETE CASCADE ON UPDATE CASCADE ,
+    FOREIGN KEY(cno) REFERENCES course(cno) on DELETE CASCADE ON UPDATE CASCADE 
 );
 
 -- 成绩表单，无实际意义，主要用于连接S-C
@@ -40,29 +40,17 @@ CREATE TABLE course_time(
     ptb CHAR(14),             --第几公共教学楼
     room CHAR(4),             -- 例A103
     PRIMARY KEY(day,ctime),
-    FOREIGN KEY (cno) REFERENCES course(cno)
+    FOREIGN KEY (cno) REFERENCES course(cno) on DELETE CASCADE ON UPDATE CASCADE 
 );
 
--- 课程表的时间节点
-
--- CREATE TABLE classroom(
---     ptb CHAR(14),             --第几公共教学楼
---     room CHAR(4),             -- 例A103
---     cno CHARACTER VARYING(5),
---     PRIMARY KEY(ptb,room),
---     FOREIGN KEY(cno) REFERENCES course(cno)
--- );
---注我觉得这个意义不大，我设了两个为主键，其实应该是三个，一个公教一个教室可能有多个课程，大家想一想怎么设置合理
---  你们先看看，我出下回来
--- 公教教室
 DROP table IF EXISTS teacher;
 CREATE TABLE teacher(
     tno CHAR(11),
     tname CHARACTER VARYING(25),
     password CHARACTER VARYING(15),
-    cno CHARACTER VARYING(5),
+    cno CHARACTER VARYING(15),
     PRIMARY KEY(tno),
-    FOREIGN KEY (cno) REFERENCES course(cno)
+    FOREIGN KEY (cno) REFERENCES course(cno) on DELETE CASCADE ON UPDATE CASCADE 
 );
 
 -- 教师信息
@@ -77,11 +65,3 @@ CREATE TABLE teacher(
 
 
 DROP table IF EXISTS registered;
-CREATE TABLE registered(
-    sno char(10),
-    sname CHARACTER VARYING(25),
-    ssex CHAR(2),
-    PASSWORD CHARACTER VARYING(15),
-    rd date,                     --注册时间
-    PRIMARY KEY(sno)
-);

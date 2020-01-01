@@ -51,14 +51,6 @@ class grade(web.RestHandler):
                 conn.commit()
             self.pool.putconn(conn)
 
-        
-        # with conn.cursor() as cur:
-        #     cur.execute(sql,[sno,cno])
-        #     result = cur.fetchall()
-        #     des=cur.description
-        #     conn.commit()
-        # self.pool.putconn(conn)
-
 
         name = []
         for item in des:
