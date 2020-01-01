@@ -6,7 +6,8 @@ class grade(web.RestHandler):
     dsn="host=localhost dbname=csdb user=hopers password=hope"
     pool = py.ThreadedConnectionPool(1, 20, dsn)
     def get(self,*args):
-        print('args:',args)
+        user=self.get_user()
+        print('user:',user,type(user))
         sql='''
         select grade.sno,grade.cno,cname,credit,grade
         from student,course,grade
@@ -32,6 +33,8 @@ class grade(web.RestHandler):
         for row in result:
             u = dict(zip(name, list(row)))
             final.append(u)
+
+        final.append({'nowuser':user})
 
         self.write_json(final)
 

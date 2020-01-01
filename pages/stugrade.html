@@ -1,12 +1,41 @@
 {% extends "stu.html" %}
 {% block title %} 成绩单 {% end %}
 
+
 {% block css %}
 {% end %}
 
 {% block js %}
+<script src="{{static_url('stugrade.js')}}" type="text/javascript"></script>
 {% end %}
 
 {% block content %}
+<div id="stugrade_div">
+    <form id="stugrade_form">
+        <td>学号：
+            <input name="sno" value="">
+        </td>
+         <br>
+        <td>课程号：
+            <input name="cno" value=""> 
+        </td><br>
+        
+        <td><input type="submit" value="点我搜索"></td>
+    </form>
+    <table border="1">
+    <thead>
+        <tr>
+            <td style="width: 6rem;">课程号</td>
+            <td style="width: 10rem;">课程名</td>
+            <td style="width: 3rem;">学分</td>
+            <td style="width: 3rem;">成绩</td>
+        </tr>
+    </thead>
+    <tbody id="stugrade_tbody">
 
+    </tbody>
+    </table>
 {% end %}
+
+
+
