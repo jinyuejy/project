@@ -6,35 +6,72 @@ class grade(web.RestHandler):
     dsn="host=localhost dbname=csdb user=hopers password=hope"
     pool = py.ThreadedConnectionPool(1, 20, dsn)
     def get(self,*args):
+        conn=self.pool.getconn()
         user=self.get_user()
-        print('user:',user,type(user))
+        if user not in ['1710650105']:
+            sno=user
+            cno=args[1]
+        else:
+            sno=args[0]
+            cno=args[1]
         sql='''
         select grade.sno,grade.cno,cname,credit,grade
         from student,course,grade
         where grade.sno=student.sno and course.cno=grade.cno
         '''
-        if args[0]:
+        if args[0] and args[1]:
             sql+=' and student.sno=%s and course.cno=%s'
+            with conn.cursor() as cur:
+                cur.execute(sql,[sno,cno])
+                result = cur.fetchall()
+                des=cur.description
+                conn.commit()
+            self.pool.putconn(conn)
+        elif args[0]:
+            sql+=' and student.sno=%s'
+            with conn.cursor() as cur:
+                cur.execute(sql,[sno])
+                result = cur.fetchall()
+                des=cur.description
+                conn.commit()
+            self.pool.putconn(conn)
+        elif args[1]:
+            sql+=' and course.cno=%s'
+            with conn.cursor() as cur:
+                cur.execute(sql,[cno])
+                result = cur.fetchall()
+                des=cur.description
+                conn.commit()
+            self.pool.putconn(conn)
+        else:
+            with conn.cursor() as cur:
+                cur.execute(sql)
+                result = cur.fetchall()
+                des=cur.description
+                conn.commit()
+            self.pool.putconn(conn)
 
-        conn=self.pool.getconn()
-        with conn.cursor() as cur:
-            cur.execute(sql,[args[0],args[1]])
-            result = cur.fetchall()
-            des=cur.description
-            conn.commit()
-        self.pool.putconn(conn)
+        
+        # with conn.cursor() as cur:
+        #     cur.execute(sql,[sno,cno])
+        #     result = cur.fetchall()
+        #     des=cur.description
+        #     conn.commit()
+        # self.pool.putconn(conn)
 
 
         name = []
         for item in des:
             name.append(item[0])
-
+        name.append('nowuser')
         final = []
         for row in result:
-            u = dict(zip(name, list(row)))
+            z=list(row)
+            z.append(user)
+            u = dict(zip(name, z))
             final.append(u)
 
-        final.append({'nowuser':user})
+        # final.append({'nowuser':user})
 
         self.write_json(final)
 

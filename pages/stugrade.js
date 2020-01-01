@@ -1,3 +1,4 @@
+
 function grade(list){
     var tbody=$("#stugrade_tbody").empty()
     for (i in list){
@@ -13,6 +14,7 @@ function grade(list){
 
 
 function load_table(sno='',cno ='') {
+    // alert('sno:'+sno)
     var url='/s/grade/'+sno+'&'+cno
     $.ajax({
         type: 'GET',
@@ -21,22 +23,39 @@ function load_table(sno='',cno ='') {
         datatype: 'json'
     })
         .done(function (data) {
+            // var item=[];
+            // for (i in data){
+            //     if (data[i]['sno']==sno){
+            //         item[i]=data[i];
+            //     }
+            // };
             grade(data)
         })
 
 }
 
-function search() {
+function get_user(){
+    $.ajax({
+        type:'GET',
+        url:'/s/grade/&',
+        data:'',
+        datatype:'json',
+    })
+    .done(function(data){
+        var nowuser=data[1]['nowuser']
+        load_table(nowuser)
+    })
+}
+function search(sno='') {
     var item = {}
     var cno = $('#stugrade_form input[name="cno"]').val();
-    var sno = $("#stugrade_form input[name='sno']").val()
     item['cno'] = cno;
-    item['sno'] = sno;
     url = '/s/grade/' + sno+'&'+cno
+    alert('url:'+url)
     $.ajax({
         type: 'GET',
         url: url,
-        data: JSON.stringify(item),
+        data: '',
         datatype: 'json'
     })
         .done(function () {
@@ -47,6 +66,7 @@ function search() {
 
 
 $(document).ready(function(){
-    load_table()
+    // load_table()
+    get_user();
     $("#stugrade_form input:submit").on('click',search)
 });
