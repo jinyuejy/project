@@ -35,6 +35,20 @@ class grade(web.RestHandler):
 
         self.write_json(final)
 
+    def post(self,*arg):
+        print('cou2:',arg)
+        grade=self.read_json()
+        with self.db_cursor() as dc:
+            sql = '''
+            INSERT 
+            INTO grade(sno,cno,grade)
+            VALUES(%s, %s, %s);
+            '''
+            data=[grade['sno'],grade['cno'],grade['grade']]
+            dc.execute(sql,data)
+            self.write_json(grade)
+
+
     def put(self,*args):
         grade=self.read_json()
         sno=args[0]

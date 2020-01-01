@@ -15,7 +15,7 @@ function table(list) {
             .text('修改')
             .on("click", (function (data) {
                 return function (event) {
-                    $("#form_change").show()
+                    
                     var cno = data['cno'];
                     edit_course(cno);
                 }
@@ -124,18 +124,16 @@ function edit_course(cno = '') {
     $.ajax({
         type: 'GET',
         url: url,
-        data: '',
         datatype: 'json'
     })
-        .done(function (data) {
-            alert('data:' + data['cno'])
-            $('#change input[name="cno"]').val(data['cno']);
-            $('#change input[name="cname"]').val(data['cname']);
-            $('#change input[name="ordn"]').val(data['ordn']);
-            $('#change input[name="credit"]').val(data['credit']);
+        .then(function (item) {
+            $('#change input[name="cno"]').val(item['cno']);
+            $('#change input[name="cname"]').val(item['cname']);
+            $('#change input[name="ordn"]').val(item['ordn']);
+            $('#change input[name="credit"]').val(item['credit']);
             $('#change').off('submit').on('submit', course_edit);
             $('#change input:submit').val('修改');
-
+            $("#form_change").show()
         });
 }
 // 修改块

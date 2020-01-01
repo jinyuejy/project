@@ -109,26 +109,6 @@ function edit_student(sno) {
 }
 
 
-// function random_create_student() {
-// 	var rand = Math.floor((Math.random()*1000000)+1000000);
-// 	var req_data = {
-// 		sname: "测试-" + rand,
-//         sno: 1710650000,
-//         ssex: "男",
-//         PASSWORD: "123456"
-// 	};
-
-// 	$.ajax({ 
-//     	type: 'POST', 
-//     	url: '/s/student/',
-//     	data: JSON.stringify(req_data),
-//     	dataType: 'json',
-//  	})
-//     .done(function(data) {
-//         load_list();
-//     }); 
-
-// }
 function register_student() {
     // 因为新添和修改都使用和这个表单，因此需要置空这个表单
     // $('#frm-student input[name="sn"]').val('');

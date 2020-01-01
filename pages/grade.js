@@ -105,6 +105,31 @@ function edit_grade(sno='',cno = '') {
         });
 }
 
+
+function add_grade() {
+    // $("#form_change").show()
+    $("#change").off('submit').on('submit',function () {
+        var item = {};
+        item['sno'] = $("#change input[name='sno']").val()
+        item['cno'] = $("#change input[name='cno']").val()
+        item['grade'] = $("#change input[name='grade']").val()
+        var url = '/s/grade/' +item['sno']+'&' +item['cno'];
+        alert('url:'+url)
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: JSON.stringify(item),
+            datatype: 'json'
+        })
+            .done(function () {
+                load_table();
+                $("#grade_change").hide()
+            });
+        return false
+    });
+
+    $('#grade_change').show()
+}
 function delete_grade(sno='',cno = '') {
     var url = '/s/grade/' + sno+'&'+cno
     $.ajax({
@@ -128,4 +153,5 @@ $(document).ready(function(){
     });
     load_table()
     $("#grade_form input:submit").on('click',search)
+    $("#add_grade").on('click', add_grade);
 });
