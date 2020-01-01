@@ -60,7 +60,7 @@ class RestHandler(BaseHandler):
     def write_json(self, data):
         json_str = json.dumps(data, cls=JsonDataEncoder)
         self.set_header('Content-type', 'application/json; charset=UTF-8')
-        self.write(json_str)  
+        self.write(json_str)
 
 
 

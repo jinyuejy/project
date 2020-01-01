@@ -1,0 +1,112 @@
+.backgroud{
+    background-color:DarkMagenta;
+}
+
+.center {
+    
+    width: 360px;
+    height: 500px;
+    background:white;
+    margin: auto;
+    padding-top: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    border-radius: 10px;
+    background-image:url(https://hbimg.huabanimg.com/0a1b5fecbb600b5aebdd9cb710241aa8776c16b5318d11-DVR79s_fw658);
+}
+.sentence{
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    font-size: 35px;
+    font-family:KaiTi;
+}
+.user{
+    width: 300px;
+    height:40px;
+    margin: 10px;
+    position: absolute;
+    background-color: 	Lavender;
+    left: 20px;
+    right: 10px;
+    top: 180px;
+    bottom: 0;
+    font-size: 15px;
+    font-family:Verdana;
+    border-radius: 5px;
+}
+.password{
+    width: 300px;
+    height:40px;
+    margin: 10px;
+    position: absolute;
+    background-color:Lavender;
+    left: 20px;
+    right: 10px;
+    top: 280px;
+    bottom: 0;
+    font-size: 15px;
+    font-family:Verdana;
+    border-radius: 5px;
+}
+.button {
+    width: 100px;
+    height:30px;
+    position: absolute;
+    left: 130px;
+    right: 0px;
+    top: 430px;
+    bottom: 0;
+    font-size: 20px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;   
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(68, 56, 71);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 3px #999;
+  }
+  
+  .button:hover {background-color:rgb(67, 57, 70)}
+  
+  .button:active {
+    background-color: rgb(69, 44, 75);
+    box-shadow: 0 5px #666;
+    transform: translateY(2px);
+  }
+.login{
+    width: 100px;
+    height:30px;
+    position: absolute;
+    background-color:	PaleGoldenrod;
+    left: 130px;
+    right: 0px;
+    top: 450px;
+    bottom: 0;
+    font-size: 20px;
+    color: 	DarkSlateGray;
+    font-family:Verdana;
+}
+
+.select{
+    width: 120px;
+    height:30px;
+    position: absolute;
+    background-color:	rgb(168, 159, 168);
+    left: 120px;
+    right: 0px;
+    top: 380px;
+    bottom: 0;
+    font-size: 20px;
+    color: 	rgb(255, 253, 245);
+    font-family:KaiTi;
+    border-radius: 5px;
+    box-shadow: 0 2px rgb(121, 112, 121);
+}

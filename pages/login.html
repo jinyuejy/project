@@ -1,15 +1,24 @@
 <html>
-    <body>
+<head>
+<link rel="stylesheet" href="{{ static_url('login.css') }} ">
+
+</head>
+    <body class="backgroud">
+        <div class="center">
+            <img src="{{ static_url('1.png') }}"  width="80px" height="80px">
+        </br>
+        <h class="sentence">欢迎登录</h>
         <form action="/user/login" method="POST">
-        <label>name:</label>
-        <input type="text" name="name"><br>
-        <label>password</label>
-        <input type="password" name="password"><br>
-        <select name="role">
+        <!-- <label>name:</label> -->
+        <input type="text" name="name" placeholder="Username" class="user"><br>
+        <!-- <label>password:</label> -->
+        <input type="password" name="password" placeholder="Password" class="password"><br>
+        <select name="role" class="select">
             <option value="students">学生</option>
             <option value="admins">管理员</option>
         </select>
-        <input type="submit" value="login">
+        <input type="submit" value="login" class="button">
         </form>
+    </div>
     </body>
 </html>
