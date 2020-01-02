@@ -11,7 +11,7 @@ class login(web.BaseHandler):
         admin={}
         student={}
         for i in register.keys():
-            if i=='1710650105':
+            if i in['1710650105','1710650122','1710650104','1710650227']:
                 admin[i]=register[i]
             else:
                 student[i]=register[i]

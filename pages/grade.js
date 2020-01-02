@@ -8,7 +8,7 @@ function grade(list){
         $("<td>").text(grade['cname']).appendTo(row);
         $("<td>").text(grade['credit']).appendTo(row);
         $("<td>").text(grade['grade']).appendTo(row);
-        var btn_edit = $('<button>')
+        var btn_edit = $('<button class="button">')
             .text('修改')
             .on("click", (function (data) {
                 return function (event) {
@@ -19,7 +19,7 @@ function grade(list){
                 }
             })(grade));
 
-        var btn_del = $('<button>')
+        var btn_del = $('<button class="button">')
             .text('删除')
             .on("click", (function (data) {
                 return function (event) {
@@ -92,10 +92,11 @@ function edit_grade(sno='',cno = '') {
     $.ajax({
         type: 'GET',
         url: url,
+        data:'',
         datatype: 'json'
     })
-        .done(function (item) {
-            $('#form_edit input[name="grades_edit"]').val(item['grade_edit']);
+        .done(function (data) {
+            $('#form_edit input[name="grades_edit"]').val(data[0]['grade']);
             $('#form_edit').off('submit').on('submit', grade_edit);
             $('#form_edit input:submit').val('修改');
 

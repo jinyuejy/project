@@ -9,7 +9,7 @@
 {% end %}
 
 {% block content %}
-<button id="add_course" >增加课程信息</button>
+<button id="add_course" class="button">添加课程信息</button>
 <div id="form_change" style="display: none;">
     <form id="change" >
         <tr><td>课程号：</td>
@@ -34,17 +34,17 @@
             <input type="text" name="room" value="">
         </tr>
         <tr><td><td> 
-        	<input type="submit" value="新增" >
-        	<button id="form_close" >关闭</button>
+        	<input type="submit" value="增加" class="button" >
+        	<button id="form_close" class="button">关闭</button>
         </td></tr>
     </form>
 </div>
 <div id="course_forms" >
 <form id="course_form" >
     <tr>
-        <td>课程名：</td>
+        <td>课程号：</td>
         <td><input type="text" name="cno" value=""></td>
-        <td><input type="submit" value="点我搜索(根据课程号)"></td>
+        <td><input type="submit" value="搜索" class="button"></td>
     </tr>
 </form> 
 </div>

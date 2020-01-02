@@ -11,7 +11,7 @@
 {% block content %}
 <div id="grade_div">
     <form id="grade_form">
-        <td>学号：
+        <td>学&nbsp&nbsp&nbsp号：
             <input name="sno" value="">
         </td>
          <br>
@@ -19,7 +19,7 @@
             <input name="cno" value=""> 
         </td><br>
         
-        <td><input type="submit" value="点我搜索" ></td>
+        <td><input type="submit" value="搜索" class="button"></td>
     </form>
     <table border="1">
     <thead>
@@ -38,20 +38,20 @@
     </table>
 
 </div>
-<button id="add_grade" >增加课程成绩</button>
+<button id="add_grade"  class="button">添加成绩</button>
 <div id="grade_change" style="display: none;">
     <form id="change">
-        <td>学号：
+        <td>学&nbsp&nbsp&nbsp号：
             <input name="sno" value="">
         </td><br>
         <td>课程号：
             <input name="cno" value="">
         </td><br>
-        <td>成绩：
+        <td>成&nbsp&nbsp&nbsp绩：
             <input name="grade" value="">
         </td><br>
-        <input type="submit" value="修改">
-        <button id="grade_close">关闭</button>
+        <input type="submit" value="修改" class="button">
+        <button id="grade_close" class="button">关闭</button>
     </form>
 </div>
 <div id="grade_edit" style="display: none;">
@@ -59,8 +59,8 @@
         <td>成绩：
             <input name="grades_edit" value="">
         </td><br>
-        <input type="submit" value="修改">
-        <button id="grade_edit_close">关闭</button>
+        <input type="submit" value="修改" class="button">
+        <button id="grade_edit_close" class="button">关闭</button>
     </form>
 </div>
 {% end %}
