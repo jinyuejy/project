@@ -10,9 +10,8 @@ into student
 values(%s,%s,%s,%s,%s)
 '''
 submitdata.submit(dsn,sql,file,0,None)
-print('本次用时：',time()-t)
 
-#   学生信息录入
+  ##学生信息录入
 
 
 sql='''
@@ -51,4 +50,5 @@ values(%s,%s,%s,%s)
 
 submitdata.submit(dsn,sql,file,4)
 
+print('此次用时：',time()-t)
 # 教师信息录入

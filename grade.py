@@ -86,12 +86,12 @@ class grade(web.RestHandler):
         sno=args[0]
         cno=args[1]
         sql='''
-        update grade set
-        cno=%s,sno=%s,grade=%s
+        update grade 
+        set grade=%s
         where sno=%s and cno=%s
         '''
         with self.db_cursor() as cur:
-            data=[grade['cno'],grade['sno'],grade['grade'],sno,cno]
+            data=[grade['grade'],sno,cno]
             cur.execute(sql,data)
             cur.commit()
 

@@ -51,7 +51,6 @@ function search(sno='') {
     var cno = $('#stugrade_form input[name="cno"]').val();
     item['cno'] = cno;
     url = '/s/grade/' + sno+'&'+cno
-    alert('url:'+url)
     $.ajax({
         type: 'GET',
         url: url,

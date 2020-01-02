@@ -77,8 +77,9 @@ function add_courses() {
         item['cname'] = $("#change input[name='cname']").val()
         item['ordn'] = $("#change input[name='ordn']").val()
         item['credit'] = $("#change input[name='credit']").val()
-        // item['cnature']=$("#change input[name='cnature']").val()
-        // item['coption']=$("#change input[name='coption']").val()
+        item['day'] = $("#change input[name='day']").val()
+        item['ctime'] = $("#change input[name='ctime']").val()
+        item['room'] = $("#change input[name='room']").val()
         var url = '/s/course/' + item['cno'];
         alert('url:'+url)
         $.ajax({
@@ -106,6 +107,9 @@ function edit_course(cno = '') {
         item['cname'] = $("#change input[name='cname']").val()
         item['ordn'] = $("#change input[name='ordn']").val()
         item['credit'] = $("#change input[name='credit']").val()
+        item['day'] = $("#change input[name='day']").val()
+        item['ctime'] = $("#change input[name='ctime']").val()
+        item['room'] = $("#change input[name='room']").val()
         var jsondata = JSON.stringify(item);
         // 获取输入的内容
         $.ajax({
@@ -124,13 +128,17 @@ function edit_course(cno = '') {
     $.ajax({
         type: 'GET',
         url: url,
+        data:'',
         datatype: 'json'
     })
-        .then(function (item) {
-            $('#change input[name="cno"]').val(item['cno']);
-            $('#change input[name="cname"]').val(item['cname']);
-            $('#change input[name="ordn"]').val(item['ordn']);
-            $('#change input[name="credit"]').val(item['credit']);
+        .then(function (data) {
+            $('#change input[name="cno"]').val(data['cno']);
+            $('#change input[name="cname"]').val(data['cname']);
+            $('#change input[name="ordn"]').val(data['ordn']);
+            $('#change input[name="credit"]').val(data['credit']);
+            $('#change input[name="day"]').val(data['day']);
+            $('#change input[name="ctime"]').val(data['ctime']);
+            $('#change input[name="room"]').val(data['room']);
             $('#change').off('submit').on('submit', course_edit);
             $('#change input:submit').val('修改');
             $("#form_change").show()

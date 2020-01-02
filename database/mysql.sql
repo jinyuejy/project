@@ -39,7 +39,7 @@ CREATE TABLE course_time(
     ctime CHARACTER VARYING(8),           --第几大节课
     ptb CHAR(14),             --第几公共教学楼
     room CHAR(4),             -- 例A103
-    PRIMARY KEY(day,ctime),
+    PRIMARY KEY(cno,day,ctime),
     FOREIGN KEY (cno) REFERENCES course(cno) on DELETE CASCADE ON UPDATE CASCADE 
 );
 

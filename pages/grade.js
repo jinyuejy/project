@@ -12,7 +12,7 @@ function grade(list){
             .text('修改')
             .on("click", (function (data) {
                 return function (event) {
-                    $("#grade_change").show()
+                    $("#grade_edit").show()
                     var cno = data['cno'];
                     var sno = data['sno']
                     edit_grade(sno,cno);
@@ -72,9 +72,8 @@ function edit_grade(sno='',cno = '') {
     // correct
     function grade_edit() {
         var item = {}
-        item['sno'] = $('#change input[name="sno"]').val()
-        item['cno'] = $("#change input[name='cno']").val()
-        item['grade'] = $("#change input[name='grade']").val()
+        item['grade'] = $("#form_edit input[name='grades_edit']").val()
+        alert('grade:'+item['grade'])
         var jsondata = JSON.stringify(item);
         // 获取输入的内容
         $.ajax({
@@ -85,7 +84,7 @@ function edit_grade(sno='',cno = '') {
         })
             .done(function () {
                 load_table();
-                $("#grade_change").hide()
+                $("#grade_edit").hide()
             });
         return false; // 在AJAX下，不需要浏览器完成后续的工作。
     }
@@ -96,11 +95,9 @@ function edit_grade(sno='',cno = '') {
         datatype: 'json'
     })
         .done(function (item) {
-            $('#change input[name="sno"]').val(item['sno']);
-            $('#change input[name="cno"]').val(item['cno']);
-            $('#change input[name="grade"]').val(item['grade']);
-            $('#change').off('submit').on('submit', grade_edit);
-            $('#change input:submit').val('修改');
+            $('#form_edit input[name="grades_edit"]').val(item['grade_edit']);
+            $('#form_edit').off('submit').on('submit', grade_edit);
+            $('#form_edit input:submit').val('修改');
 
         });
 }
@@ -114,7 +111,6 @@ function add_grade() {
         item['cno'] = $("#change input[name='cno']").val()
         item['grade'] = $("#change input[name='grade']").val()
         var url = '/s/grade/' +item['sno']+'&' +item['cno'];
-        alert('url:'+url)
         $.ajax({
             type: 'POST',
             url: url,
@@ -151,6 +147,9 @@ $(document).ready(function(){
         });
         $('#grade_change').hide();
     });
+    $("#grade_edit_close").on('click',function(){
+        $("#grade_edit").hide()
+    })
     load_table()
     $("#grade_form input:submit").on('click',search)
     $("#add_grade").on('click', add_grade);
