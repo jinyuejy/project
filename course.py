@@ -72,23 +72,25 @@ class course(web.RestHandler):
             '''
             data=[cou['cno'],cou['cname'],cou['ordn'],cou['credit'],cou['cnature'],cou['coption']]
             cur.execute(sql,data)
+            self.write_json(cou)
 
-        with self.db_cursor() as dc:
-            sql = '''
-            INSERT 
-            INTO course_time(cno,day,ctime,ptb,room)
-            VALUES(%s, %s, %s, %s,%s);
-            '''
-            data=[cou['cno'],cou['day'],cou['ctime'],cou['ptb'],cou['room']]
+        # with self.db_cursor() as dc:
+        #     sql = '''
+        #     INSERT 
+        #     INTO course_time(cno,day,ctime,ptb,room)
+        #     VALUES(%s, %s, %s, %s,%s);
+        #     '''
+        #     data=[cou['cno'],cou['day'],cou['ctime'],cou['ptb'],cou['room']]
 
-            dc.execute(sql,data)
+        #     dc.execute(sql,data)
         
-        self.write_json(cou)
+        
 
 
     def put(self,args):
         cou = self.read_json()
         cno=args
+        print("cno:",cou)
         with self.db_cursor() as cur:
             sql = ''' 
             UPDATE course SET 
@@ -98,7 +100,7 @@ class course(web.RestHandler):
             cur.execute(sql, [cou['cno'],cou['cname'],cou['ordn'],int(cou['credit']),cno])
             cur.commit()
 
-        self.write_json(cou)
+            self.write_json(cou)
 
 
     def delete(self, args):

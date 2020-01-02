@@ -92,10 +92,11 @@ function edit_grade(sno='',cno = '') {
     $.ajax({
         type: 'GET',
         url: url,
+        data:'',
         datatype: 'json'
     })
-        .done(function (item) {
-            $('#form_edit input[name="grades_edit"]').val(item['grade_edit']);
+        .done(function (data) {
+            $('#form_edit input[name="grades_edit"]').val(data[0]['grade']);
             $('#form_edit').off('submit').on('submit', grade_edit);
             $('#form_edit input:submit').val('修改');
 

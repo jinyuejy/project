@@ -132,13 +132,13 @@ function edit_course(cno = '') {
         datatype: 'json'
     })
         .then(function (data) {
-            $('#change input[name="cno"]').val(data['cno']);
-            $('#change input[name="cname"]').val(data['cname']);
-            $('#change input[name="ordn"]').val(data['ordn']);
-            $('#change input[name="credit"]').val(data['credit']);
-            $('#change input[name="day"]').val(data['day']);
-            $('#change input[name="ctime"]').val(data['ctime']);
-            $('#change input[name="room"]').val(data['room']);
+            $('#change input[name="cno"]').val(data[0]['cno']);
+            $('#change input[name="cname"]').val(data[0]['cname']);
+            $('#change input[name="ordn"]').val(data[0]['ordn']);
+            $('#change input[name="credit"]').val(data[0]['credit']);
+            $('#change input[name="day"]').val(data[0]['day']);
+            $('#change input[name="ctime"]').val(data[0]['ctime']);
+            $('#change input[name="room"]').val(data[0]['room']);
             $('#change').off('submit').on('submit', course_edit);
             $('#change input:submit').val('修改');
             $("#form_change").show()

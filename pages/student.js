@@ -101,11 +101,11 @@ function edit_student(sno) {
     })
         .then(function (item) {
             // $('#frm-student input[name="sn"]').val(item['sn']);
-            $('#frm-student input[name="sno"]').val(item['sno']);
-            $('#frm-student input[name="sname"]').val(item['sname']);
-            $('#frm-student input[name="ssxe"]').val(item['ssex']);
-            $('#frm-student input[name="PASSWORD"]').val(item['PASSWORD']);
-            $('#frm-student input[name="rd"]').val(item['rd']);
+            $('#frm-student input[name="sno"]').val(item[0]['sno']);
+            $('#frm-student input[name="sname"]').val(item[0]['sname']);
+            $('#frm-student input[name="ssxe"]').val(item[0]['ssex']);
+            $('#frm-student input[name="PASSWORD"]').val(item[0]['PASSWORD']);
+            $('#frm-student input[name="rd"]').val(item[0]['rd']);
 
             $('#frm-student').off('submit').on('submit', put_student);
             $('#frm-student input:submit').val('修改');
