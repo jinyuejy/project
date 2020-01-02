@@ -12,11 +12,9 @@ class StudentRestHandler(web.RestHandler):
         '''
         with self.db_cursor() as dc:
             if sno :
-                # sn = int(sn)
-
                 sql += " WHERE sno=%s"
                 dc.execute(sql, [sno])
-                self.write_json(dc.fetchone_dict())
+                self.write_json(dc.fetchall_dicts())
             else:
                 sql += 'ORDER BY rd, sno'
                 dc.execute(sql)

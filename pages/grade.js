@@ -154,3 +154,15 @@ $(document).ready(function(){
     $("#grade_form input:submit").on('click',search)
     $("#add_grade").on('click', add_grade);
 });
+
+
+$(document).ajaxError(function (event, jqxhr, settings, exception) {
+    var msg = jqxhr.status + ': ' + jqxhr.statusText + "\n\n";
+    if (jqxhr.status == 404 || jqxhr.status == 405) {
+        msg += "访问REST资源时，URL错误或该资源的请求方法\n\n"
+        msg += settings.type + '  ' + settings.url
+    } else {
+        msg += jqxhr.responseText;
+    }
+    alert(msg);
+});

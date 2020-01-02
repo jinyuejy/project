@@ -1,3 +1,8 @@
+table{
+	margin: auto;
+	text-align: center;
+	font-family: '华文行楷', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 div.container {
 	width: 100%;
 	margin:0px;
@@ -12,12 +17,15 @@ div.header, div.footer {
 	clear:left;
 }
 
-
+.right{
+	float: right;
+	font-family: 'Times New Roman', Times, serif;
+}
 div.left {
 	float:left;
-	width:160px;
+	width:150px;
 	margin:0;
-	padding:1em;
+	padding:0.5em;
 }
 
 div.content {
@@ -25,4 +33,9 @@ div.content {
 	margin-left:190px;
 	border-left:1px solid gray;
 	padding:1em;
+	background-image: url('body.jpg');
+}
+
+.body{
+	background-color:rgb(92, 218, 223);
 }

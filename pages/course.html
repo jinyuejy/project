@@ -9,7 +9,36 @@
 {% end %}
 
 {% block content %}
-
+<button id="add_course" >增加课程信息</button>
+<div id="form_change" style="display: none;">
+    <form id="change" >
+        <tr><td>课程号：</td>
+            <input type="text" name="cno" value="">
+        </tr>
+        <tr><td>课程名：</td>
+            <input type="text" name="cname" value="">
+        </tr>
+        <tr><td>课序号：</td>
+            <input type="text" name="ordn" value="">
+        </tr>
+        <tr><td>学分：</td>
+            <input type="text" name="credit" value="">
+        </tr>
+        <tr><td>周几：</td>
+            <input type="text" name="day" value="">
+        </tr>
+        <tr><td>第几大节课：</td>
+            <input type="text" name="ctime" value="">
+        </tr>
+        <tr><td>教室：</td>
+            <input type="text" name="room" value="">
+        </tr>
+        <tr><td><td> 
+        	<input type="submit" value="新增" >
+        	<button id="form_close" >关闭</button>
+        </td></tr>
+    </form>
+</div>
 <div id="course_forms" >
 <form id="course_form" >
     <tr>
@@ -37,35 +66,6 @@
         </tbody> 
     </table>
 </div>
-<button id="add_course">增加课程信息</button>
-<div id="form_change" style="display: none;">
-    <form id="change">
-        <tr><td>课程号：</td>
-            <input type="text" name="cno" value="">
-        </tr>
-        <tr><td>课程名：</td>
-            <input type="text" name="cname" value="">
-        </tr>
-        <tr><td>课序号：</td>
-            <input type="text" name="ordn" value="">
-        </tr>
-        <tr><td>学分：</td>
-            <input type="text" name="credit" value="">
-        </tr>
-        <tr><td>周几：</td>
-            <input type="text" name="day" value="">
-        </tr>
-        <tr><td>第几大节课：</td>
-            <input type="text" name="ctime" value="">
-        </tr>
-        <tr><td>教室：</td>
-            <input type="text" name="room" value="">
-        </tr>
-        <tr><td><td> 
-        	<input type="submit" value="新增">
-        	<button id="form_close">关闭</button>
-        </td></tr>
-    </form>
-</div>
+
 {% end %}
 

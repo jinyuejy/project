@@ -64,14 +64,14 @@ class course(web.RestHandler):
             cou['cnature']='必修'
         if not cou.get('ptb'):
             cou['ptb']='第一公共教学楼'
-        with self.db_cursor() as dc:
+        with self.db_cursor() as cur:
             sql = '''
             INSERT 
             INTO course(cno,cname,ordn,credit,cnature,coption)
             VALUES(%s, %s, %s, %s,%s,%s);
             '''
             data=[cou['cno'],cou['cname'],cou['ordn'],cou['credit'],cou['cnature'],cou['coption']]
-            dc.execute(sql,data)
+            cur.execute(sql,data)
 
         with self.db_cursor() as dc:
             sql = '''
@@ -80,6 +80,7 @@ class course(web.RestHandler):
             VALUES(%s, %s, %s, %s,%s);
             '''
             data=[cou['cno'],cou['day'],cou['ctime'],cou['ptb'],cou['room']]
+
             dc.execute(sql,data)
         
         self.write_json(cou)

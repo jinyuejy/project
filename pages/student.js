@@ -33,18 +33,24 @@ function render_list(list) {
     }
 }
 
-function load_list() {
+function load_list(sno='') {
+    var url="/s/student/"+sno
     $.ajax({
         type: 'GET',
-        url: "/s/student/",
+        url:url ,
         data: '',
         dataType: 'json'
     })
         .done(function (data) {
             render_list(data);
         });
-
 }
+
+function search(){
+    var sno=$("#search_div input[name='sno']").val();
+    load_list(sno)
+    return false
+};
 
 function get_details(sno) {
     $.ajax({
@@ -169,8 +175,9 @@ $(document).ready(function () {
         });
         $('#dlg-student-form').hide();
     });
-
+    $("#search_div input:submit").on('click',search);
     load_list();
+   
 });
 
 //---设置AJAX缺省的错误处理方式
