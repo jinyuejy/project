@@ -105,6 +105,9 @@ function edit_grade(sno='',cno = '') {
 
 
 function add_grade() {
+    $("#change input[name='sno']").val('')
+    $("#change input[name='cno']").val('')
+    $("#change input[name='grade']").val('')
     // $("#form_change").show()
     $("#change").off('submit').on('submit',function () {
         var item = {};

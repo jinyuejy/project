@@ -71,6 +71,15 @@ function load_table(cno = '') {
 
 function add_courses() {
     // $("#form_change").show()
+    $("#change input[name='cno']").val('')
+    $("#change input[name='cname']").val('')
+    $("#change input[name='ord']").val('')
+    $("#change input[name='credit']").val('')
+    $("#change input[name='day']").val('')
+    $("#change input[name='ctime']").val('')
+    $("#change input[name='room']").val('')
+
+    //// 增加前置空添加框
     $("#change").off('submit').on('submit',function () {
         var item = {};
         item['cno'] = $("#change input[name='cno']").val()
@@ -81,7 +90,7 @@ function add_courses() {
         item['ctime'] = $("#change input[name='ctime']").val()
         item['room'] = $("#change input[name='room']").val()
         var url = '/s/course/' + item['cno'];
-        alert('url:'+url)
+        // alert('url:'+url)
         $.ajax({
             type: 'POST',
             url: url,

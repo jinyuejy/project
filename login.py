@@ -11,7 +11,7 @@ class login(web.BaseHandler):
         admin={}
         student={}
         for i in register.keys():
-            if i in['1710650105','1710650122','1710650104','1710650227']:
+            if i in['1710650105']:
                 admin[i]=register[i]
             else:
                 student[i]=register[i]
@@ -23,6 +23,7 @@ class login(web.BaseHandler):
                     self.redirect('/')
                 else:
                     self.redirect('/login')
+                    print('密码错误')
             else:
                 self.redirect('/login')
                 print('没有注册管理员')
@@ -34,6 +35,7 @@ class login(web.BaseHandler):
                     self.redirect('/stu')
                 else:
                     self.redirect('/login')
+                    print('学生密码错误')
             else:
                 self.redirect('/login')
                 print('没有注册')

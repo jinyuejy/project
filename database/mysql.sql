@@ -45,7 +45,7 @@ CREATE TABLE course_time(
 
 DROP table IF EXISTS teacher;
 CREATE TABLE teacher(
-    tno CHAR(11),
+    tno CHAR(7),
     tname CHARACTER VARYING(25),
     password CHARACTER VARYING(15),
     cno CHARACTER VARYING(15),

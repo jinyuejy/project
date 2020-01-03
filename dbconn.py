@@ -42,8 +42,6 @@ def get_register():
             cur.execute(sql)
             result=cur.fetchall()
             conn.commit()
-            pool.putconn(conn)
-
         except:
             conn.rollback()
             raise
@@ -55,6 +53,7 @@ def get_register():
             sinfor.append([row[1],row[2]])
 
         return dict(zip(ssno,sinfor))
+
 
 class ConnectionError(LookupError):
     pass
