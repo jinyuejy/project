@@ -21,3 +21,5 @@ for row in result:
     sinfor.append([row[1],row[2]])
 
 print(dict(zip(ssno,sinfor)))
+
+## 测试内容
